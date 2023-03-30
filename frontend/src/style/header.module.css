@@ -1,0 +1,36 @@
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  margin-bottom: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.logo {
+  font-family: var(--font-climate);
+  font-size: larger;
+  color: #ef476f;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+li {
+  text-decoration: none;
+  color: white;
+}
+
+li:hover {
+  color: #c2c2c2;
+}
