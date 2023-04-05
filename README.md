@@ -77,3 +77,16 @@ npm start
 | ------------- | ------------- |
 | CMS | [Strapi](https://strapi.io/) |
 | Database  | [SQLite](https://sqlite.org/index.html) |
+
+<br>
+<h3><b>Generating Documentation</b></h3>
+
+Documentation is generated using <b>JSDoc</b>.
+
+```
+npm run docs
+```
+
+You will see the output document in local folder <b>out</b>.
+
+

@@ -32,6 +32,14 @@ export default function ItemId() {
   if (loading) return <LinearProgress />;
   if (error) return <Alert>{error}</Alert>;
 
+  /**
+   * Страница отдельного элемента каталога
+   * @example
+   * // получаем идентификатор элемента
+   * params = useParams();
+   * // вставляем в элемент каталога
+   * <ItemId id={params.id} />
+   */
   return (
     <div id={params.id} className={styles.itemId_container}>
       <div>
