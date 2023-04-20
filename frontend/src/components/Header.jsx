@@ -1,15 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../style/header.module.css";
-import SearchIcon from "@mui/icons-material/Search";
 import Favorite from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge } from "@mui/material";
 import useFavoriteStore from "../hooks/useFavoriteStore";
 
 export default function Header() {
-  // const favorite = useFavoriteStore((state) => state.favorite);
-
   const favorite = useFavoriteStore((state) => state.favorite);
 
   console.log(favorite);
@@ -41,11 +38,7 @@ export default function Header() {
       <nav>
         <ul>
           <li>
-            <SearchIcon />
-          </li>
-          <li>
             <Link to="/favorite" className={styles.link}>
-              {/* TODO: fix route */}
               <Badge badgeContent={favorite} color="error">
                 <Favorite />
               </Badge>
