@@ -1,21 +1,26 @@
 import { Alert, LinearProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
-// import Category from "../components/Category";
+import Category from "../components/Category";
 import Item from "../components/Item";
 import useFetch from "../hooks/useFetch";
 import styles from "../style/catalog.module.css";
 import Search from "../components/Search";
 
 export default function Catalog() {
-  // const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState("");
   const [search, setSearch] = useState("");
+  const [items, setItems] = useState([]);
 
   const { data, loading, error } = useFetch(
     `http://localhost:1337/api/gums?populate=photo`
   );
 
-  const handleChange = (newValue) => {
+  const handleChangeSearch = (newValue) => {
     setSearch(newValue);
+  };
+
+  const handleChangeCategory = (newValue) => {
+    setCategory(newValue);
   };
 
   const handleSearch = async (value) => {
@@ -26,18 +31,27 @@ export default function Catalog() {
       .then((data) => setItems(data.data));
   };
 
-  const [items, setItems] = useState([]);
+  const handleCategory = async (value) => {
+    await fetch(
+      `http://localhost:1337/api/gums?populate=*&filters[categories][title][$contains]=${value}`
+    )
+      .then((response) => response.json())
+      .then((data) => setItems(data.data));
+  };
 
   useEffect(() => {
     if (data) {
       setItems(data);
-      console.log(items);
     }
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     handleSearch(search);
   }, [search]);
+
+  useEffect(() => {
+    handleCategory(category);
+  }, [category]);
 
   if (loading) return <LinearProgress />;
   if (error) return <Alert>{error}</Alert>;
@@ -46,9 +60,9 @@ export default function Catalog() {
     <div>
       <div className={styles.catalog_title_container}>
         <h1 className={styles.catalog_title}>Каталог</h1>
-        <Search onSearchChange={handleChange} />
+        <Search onSearchChange={handleChangeSearch} />
       </div>
-      {/* <Category categories={categories} /> */}
+      <Category onCategoryChange={handleChangeCategory} />
 
       <ul className={styles.catalog_list}>
         {items.map((element) => (

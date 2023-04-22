@@ -21,15 +21,14 @@ export default function Search({ onSearchChange }) {
       alignItems={"center"}
     >
       <TextField
-        sx={{ width: "250px", borderRadius: "8px" }}
-        style={{ backgroundColor: "white" }}
+        sx={{ width: "250px", borderRadius: "8px", backgroundColor: "white" }}
         variant="filled"
         value={value}
         label={"Название"}
         onChange={handleChange}
       />
       <Button
-        sx={{ padding: "16px 20px" }}
+        sx={{ padding: "16px 20px", backgroundColor: "#ef476f" }}
         variant="contained"
         color="primary"
         onClick={handleSubmit}

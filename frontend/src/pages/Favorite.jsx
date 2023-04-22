@@ -14,7 +14,11 @@ export default function Favorite() {
       alignItems={"center"}
     >
       <h1>Избранное</h1>
-      <Button onClick={removeAllFavorite} variant="contained">
+      <Button
+        onClick={removeAllFavorite}
+        variant="contained"
+        sx={{ backgroundColor: "#ef476f" }}
+      >
         Убрать Все
       </Button>
     </Box>
