@@ -8,26 +8,50 @@ import useFavoriteStore from "../hooks/useFavoriteStore";
 
 export default function ItemId() {
   const params = useParams();
+
   const increaseFavorite = useFavoriteStore((state) => state.increaseFavorite);
   const decreaseFavorite = useFavoriteStore((state) => state.decreaseFavorite);
 
-  const [favorite, setFavorite] = useState("inherit"); // TODO: add favorite
+  const [favorite, setFavorite] = useState("inherit");
+  const [favoriteId, setFavoriteId] = useState(undefined);
 
   const { data, error, loading } = useFetch(
     `http://localhost:1337/api/gums/${params.id}?populate=*`
   );
 
-  const addFavorite = () => {
-    if (favorite === "inherit") {
+  const handleAddingFavorite = async () => {
+    await fetch("http://localhost:1337/api/favorites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data: {
+          gums: params.id,
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => setFavoriteId(() => data.data.id));
+
       increaseFavorite();
       setFavorite("error");
-    } else {
-      decreaseFavorite();
-      setFavorite("inherit");
-    }
+    
+      console.log(favoriteId)
   };
 
-  console.log(data);
+  const handleRemovingFavorite = async () => {
+    // console.log(favoriteId);
+    await fetch(`http://localhost:1337/api/favorites/${favoriteId}`, {
+      method: "DELETE",
+    });
+
+    decreaseFavorite();
+    setFavorite("inherit");
+    setFavoriteId(() => undefined)
+  }
+
+  // console.log(data);
 
   if (loading) return <LinearProgress />;
   if (error) return <Alert>{error}</Alert>;
@@ -69,9 +93,16 @@ export default function ItemId() {
         <h2>{data.attributes.price} ₽</h2>
         <div className={styles.cart_container}>
           <button>Добавить</button>
-          <Button type="button" variant="filled" onClick={addFavorite}>
-            <Favorite color={favorite} />
-          </Button>
+          {
+            favorite == "inherit" ?
+            <Button type="button" variant="filled" onClick={handleAddingFavorite}>
+              <Favorite color={"inherit"} />
+            </Button>
+            :
+            <Button type="button" variant="filled" onClick={handleRemovingFavorite}>
+              <Favorite color={"error"} />
+            </Button>
+          }
         </div>
       </div>
     </div>

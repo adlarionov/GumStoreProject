@@ -42,6 +42,12 @@
       "relation": "manyToMany",
       "target": "api::favorite.favorite",
       "mappedBy": "gums"
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::order.order",
+      "mappedBy": "gums"
     }
   }
 }

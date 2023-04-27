@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "favorites",
+  "collectionName": "orders",
   "info": {
-    "singularName": "favorite",
-    "pluralName": "favorites",
-    "displayName": "Favorite",
-    "description": ""
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order"
   },
   "options": {
     "draftAndPublish": true
@@ -16,7 +15,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::gum.gum",
-      "inversedBy": "favorites"
+      "inversedBy": "orders"
     }
   }
 }
