@@ -43,10 +43,10 @@
       "target": "api::favorite.favorite",
       "mappedBy": "gums"
     },
-    "orders": {
+    "carts": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::order.order",
+      "target": "api::cart.cart",
       "mappedBy": "gums"
     }
   }

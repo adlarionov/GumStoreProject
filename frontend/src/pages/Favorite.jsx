@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import useFetch from "../hooks/useFetch";
-import useFavoriteStore from "../hooks/useFavoriteStore";
 import {
   Box,
   Button,

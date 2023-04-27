@@ -4,18 +4,30 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "Order"
+    "displayName": "Order",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "gums": {
+    "carts": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::gum.gum",
+      "target": "api::cart.cart",
       "inversedBy": "orders"
+    },
+    "address": {
+      "type": "richtext",
+      "required": true
+    },
+    "credential": {
+      "type": "richtext",
+      "required": true
+    },
+    "delivery_date": {
+      "type": "date"
     }
   }
 }
