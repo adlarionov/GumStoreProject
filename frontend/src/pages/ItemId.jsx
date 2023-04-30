@@ -51,6 +51,20 @@ export default function ItemId() {
     setFavoriteId(() => undefined)
   }
 
+  const handleCart = async () => {
+    await fetch("http://localhost:1337/api/carts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data: {
+          gums: params.id,
+        },
+      }),
+    })
+  }
+
   // console.log(data);
 
   if (loading) return <LinearProgress />;
@@ -92,7 +106,7 @@ export default function ItemId() {
         </div>
         <h2>{data.attributes.price} ₽</h2>
         <div className={styles.cart_container}>
-          <button>Добавить</button>
+          <button onClick={handleCart}>Добавить</button>
           {
             favorite == "inherit" ?
             <Button type="button" variant="filled" onClick={handleAddingFavorite}>

@@ -9,8 +9,6 @@ import useFavoriteStore from "../hooks/useFavoriteStore";
 export default function Header() {
   const favorite = useFavoriteStore((state) => state.favorite);
 
-  console.log(favorite);
-
   return (
     <header className={styles.header_container}>
       <Link to="/catalog" className={styles.link}>
