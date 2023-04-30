@@ -53,7 +53,7 @@ export default function Cart() {
       address: "example",
     },
     onSubmit: (values, { resetForm }) => {
-      if (values.address !== "" && values.name !== "" && total != 0)
+      if (values.address !== "" && values.name !== "" && total !== 0)
         handleFormSubmit(values);
       else 
         alert("Пустая корзина")
